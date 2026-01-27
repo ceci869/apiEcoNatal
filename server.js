@@ -156,7 +156,7 @@ app.post('/api/cadastro_catadores', async (req, res) => {
 app.use(express.static(path.join(__dirname, 'public')));
 const senhaMongo = process.env.MONGO_URI;
 
-mongoose.connect(`mongodb+srv://aines_db_user:${senhaMongo}@econatal.v4qapnr.mongodb.net/?appName=EcoNatal`)
+mongoose.connect(senhaMongo)
     .then(() => console.log('MongoDB conectado com sucesso!'))
     .catch((erro) => console.log('Erro no MongoDB', erro));
 
