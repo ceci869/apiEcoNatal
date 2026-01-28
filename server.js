@@ -91,6 +91,31 @@ app.post('/login', async (req, res) => {
     }
 });
 
+// Rota usuário logado
+app.get('api/usuario_logado', async (req, res) => {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+
+    if (!token) {
+        return res.status(401).json({ mensagem: 'Acesso negado!' });
+    }
+
+    try {
+        const secreto = process.env.JWT_SECRET;
+        const decodificado = jwt.verify(token, secreto);
+        const usuario = await Usuario.findByID(decodificado.id).select('-senha');
+
+        if (!usuario) {
+            return res.status(404).json({ mensagem: 'Usuário não encontrado' });
+        }
+
+        res.status(200).json(usuario);
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({ mensagem: 'Token inválido' })
+    }
+});
+
 
 // Caminhos estáticos
 app.post('/api/contato', async (req, res) => {
