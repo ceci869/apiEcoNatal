@@ -103,7 +103,7 @@ app.get('/api/usuario_logado', async (req, res) => {
     try {
         const secreto = process.env.JWT_SECRET;
         const decodificado = jsonwebtoken.verify(token, secreto);
-        const usuario = await Usuario.findByID(decodificado.id).select('-senha');
+        const usuario = await Usuario.findById(decodificado.id).select('-senha');
 
         if (!usuario) {
             return res.status(404).json({ mensagem: 'Usuário não encontrado' });
