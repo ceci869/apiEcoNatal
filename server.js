@@ -102,7 +102,7 @@ app.get('api/usuario_logado', async (req, res) => {
 
     try {
         const secreto = process.env.JWT_SECRET;
-        const decodificado = jwt.verify(token, secreto);
+        const decodificado = jsonwebtoken.verify(token, secreto);
         const usuario = await Usuario.findByID(decodificado.id).select('-senha');
 
         if (!usuario) {
