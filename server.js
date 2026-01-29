@@ -92,7 +92,7 @@ app.post('/login', async (req, res) => {
 });
 
 // Rota usuário logado
-app.get('api/usuario_logado', async (req, res) => {
+app.get('/api/usuario_logado', async (req, res) => {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
 
