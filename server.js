@@ -152,7 +152,7 @@ app.post('/api/cadastro_catadores', async (req, res) => {
     try {
         const { nome, telefone, email, endereco, coletas, foto } = req.body;
 
-        if (!nome || !telefone || !email || !endereco || !coletas || coletas.length === 0 || !foto) {
+        if (!nome || !telefone || !email || !endereco || !coletas || coletas.length === 0) {
             return res.status(400).json({ erro: 'Preencha todos os campos!' });
         }
 
