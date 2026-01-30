@@ -24,6 +24,10 @@ const Catador = new Schema({
         type: [String],
         required: true
     },
+    foto: {
+        type: String,
+        required: true
+    },
     criacao: {
         type: Date,
         default: Date.now
