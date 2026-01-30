@@ -150,9 +150,9 @@ app.post('/api/cadastro_catadores', async (req, res) => {
     console.log('Recebendo pedido de cadastro de catador:', req.body);
 
     try {
-        const { nome, telefone, email, endereco, coletas } = req.body;
+        const { nome, telefone, email, endereco, coletas, foto } = req.body;
 
-        if (!nome || !telefone || !email || !endereco || !coletas || coletas.length === 0) {
+        if (!nome || !telefone || !email || !endereco || !coletas || coletas.length === 0 || !foto) {
             return res.status(400).json({ erro: 'Preencha todos os campos!' });
         }
 
@@ -166,7 +166,8 @@ app.post('/api/cadastro_catadores', async (req, res) => {
             telefone,
             email,
             endereco,
-            coletas
+            coletas,
+            foto
         });
 
         await novoCatador.save();
